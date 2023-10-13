@@ -1,6 +1,24 @@
-from flask import Flask
+from flask import Flask, url_for
+from markupsafe import escape
 app = Flask(__name__)
 @app.route("/")
+@app.route("/index")
 def hello():
-	str = '<h1>哈啦呜</h1> <img src="https://www.zsucai.com/files/2014/0724/140612199224757/zsucai140612245525iy100.jpg"><br>文件列表<br>Kind_Sheet.xlsx<br>Result.jpg'
+	str = 'hello'
 	return str
+
+@app.route("/user/<newname>")
+def displayname(newname):
+	return f"unanthorized visit! {escape(newname)}"
+
+@app.route("/test")
+def test_for():
+	print(url_for("hello"))
+	print(url_for("displayname", newname="ws"))
+
+	print(url_for("test_for"))
+	print(url_for("test_for", num=2, ws='8d8', we = 33))
+
+#	print(url_for("error"))
+
+	return 'ok'
