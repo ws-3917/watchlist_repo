@@ -16,6 +16,7 @@ movies = [
 ]
 @app.route("/")
 def index():
+    print(url_for("static", filename="foo.jpg"))
     return render_template("index.html", name=name, movies=movies)
 # @app.route("/index")
 # def hello():
